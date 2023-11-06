@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const links = <>
-        <li><Link>Home</Link></li>
-        <li><Link>Room</Link></li>
-        <li><Link>My Bookings</Link></li>
-        <li><Link>Sign in</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/rooms">Rooms</Link></li>
+        <li><Link to="/mybookings">My Bookings</Link></li>
+        <li><Link className="text-red-600" to="/signin">Sign in</Link></li>
     </>
+    
     return (
         <div className="navbar bg-base-100 border-b-2">
             <div className="navbar-start ml-5">
@@ -23,7 +24,7 @@ const Navbar = () => {
                 <Link className="text-2xl font-bold"><span className="text-red-500">R</span>oom<span className="text-red-600">R</span>over</Link>
             </div>
             <div className="navbar-end mr-5 hidden lg:flex">
-                <ul className="flex gap-10 text-red-500 font-medium">
+                <ul className="flex gap-10 font-medium">
                    {links}
                 </ul>
             </div>
