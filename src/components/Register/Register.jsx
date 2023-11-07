@@ -1,13 +1,41 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { authContext } from "../Provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+    const {creatUser} = useContext(authContext)
+    const [errorMessage, setErrorMessage] = useState('')
+
     const handleRegister = e =>{
         e.preventDefault()
         const name = e.target.name.value
         const email = e.target.email.value
         const password = e.target.password.value
         console.log(name, email, password)
+
+        setErrorMessage('')
+
+        if (password.length < 6) {
+            return setErrorMessage('Please give more than 6 character password.')
+        } else if (! /[A-Z]/.test(password)) {
+            return setErrorMessage('Please add any capital letter.')
+        } else if (! /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(password)) {
+            return setErrorMessage('Please add any speacial character.')
+        }
+
+        creatUser(email, password)
+        .then(result => {
+            console.log(result.user)
+
+            updateProfile(result.user, {
+                displayName: name,
+            })
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
 
     }
     return (
@@ -28,6 +56,9 @@ const Register = () => {
                         <div className="form-control">
                             <input name="password" type="password" placeholder="password" className="input input-bordered" required />
                         </div>
+                        {
+                            errorMessage && <p className="text-red-500">*{errorMessage}</p>
+                        }
                         <div className="form-control mt-6">
                             <button className="btn bg-blue-500 text-white">Register</button>
                         </div>
