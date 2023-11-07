@@ -5,7 +5,7 @@ import { authContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-    const {creatUser} = useContext(authContext)
+    const {creatUser, loginWithGoogle} = useContext(authContext)
     const [errorMessage, setErrorMessage] = useState('')
 
     const handleRegister = e =>{
@@ -38,6 +38,16 @@ const Register = () => {
         })
 
     }
+
+    const handleGoogleSignup = () =>{
+        loginWithGoogle()
+        .then(result => {
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
     
     return (
         <div className="text-center">
@@ -46,7 +56,7 @@ const Register = () => {
                 <div className="card md:w-1/3 lg:w-1/3 ">
                     <h2 className="text-4xl font-bold">Sign in or register</h2>
                     <form onSubmit={handleRegister} className="card-body">
-                        <button className="btn bg-blue-500 text-white"><FcGoogle className="text-2xl bg-white rounded-lg"></FcGoogle>Sign in with Google</button>
+                        <button onClick={handleGoogleSignup} className="btn bg-blue-500 text-white"><FcGoogle className="text-2xl bg-white rounded-lg"></FcGoogle>Sign in with Google</button>
                         <p>or</p>
                         <div className="form-control">
                             <input name="name" type="text" placeholder="name" className="input input-bordered" required />

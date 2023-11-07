@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { authContext } from "../Provider/AuthProvider";
 
 const Login = () => {
-    const {loginUser} = useContext(authContext)
+    const {loginUser, loginWithGoogle} = useContext(authContext)
     const [errorMessage, setErrorMessage] = useState('')
 
     const handleLogin = e =>{
@@ -23,6 +23,16 @@ const Login = () => {
         })
     }
 
+    const handleGoogleSignup = () =>{
+        loginWithGoogle()
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+    }
+
     return (
         <div className="text-center">
             <div className="hero min-h-screen bg-base-200">
@@ -30,7 +40,7 @@ const Login = () => {
                 <div className="card md:w-1/3 lg:w-1/3 ">
                     <h2 className="text-4xl font-bold">Sign in or Login</h2>
                     <form onSubmit={handleLogin} className="card-body">
-                        <button className="btn bg-blue-500 text-white"><FcGoogle className="text-2xl bg-white rounded-lg"></FcGoogle>Sign in with Google</button>
+                        <button onClick={handleGoogleSignup} className="btn bg-blue-500 text-white"><FcGoogle className="text-2xl bg-white rounded-lg"></FcGoogle>Sign in with Google</button>
                         <p>or</p>
                         <div className="form-control">
                             <input name="email" type="email" placeholder="email" className="input input-bordered" required />
