@@ -38,6 +38,7 @@ const Register = () => {
         })
 
     }
+    
     return (
         <div className="text-center">
             <div className="hero min-h-screen bg-base-200">

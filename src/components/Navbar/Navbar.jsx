@@ -1,11 +1,33 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../Provider/AuthProvider";
+import { BsPersonCircle } from "react-icons/bs";
 
 const Navbar = () => {
+    const { logoutUser, user } = useContext(authContext)
+
+    const handleLogout =()=>{
+        logoutUser()
+    }
+    
     const links = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/rooms">Rooms</Link></li>
         <li><Link to="/mybookings">My Bookings</Link></li>
-        <li><Link className="text-red-600" to="/login">Sign in</Link></li>
+        {
+            user ? <div className="flex gap-2">
+                {
+                    user.photoURL ? <div className="avatar">
+                        <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={user.photoURL}/>
+                        </div>
+                    </div>
+                        : <BsPersonCircle className="text-3xl"></BsPersonCircle>
+                }
+                <button onClick={handleLogout}>Logout</button>
+            </div>
+                : <li><Link className="text-red-600" to="/login">Sign in</Link></li>
+        }
     </>
 
     return (
@@ -25,7 +47,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end mr-5 hidden lg:flex">
                 <ul className="flex gap-10 font-medium">
-                   {links}
+                    {links}
                 </ul>
             </div>
             {/* <div className="navbar-end">
