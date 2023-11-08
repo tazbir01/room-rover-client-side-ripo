@@ -1,0 +1,50 @@
+[
+    {
+      "name": "Deluxe Room",
+      "image": "https://i.ibb.co/zWdzqF7/visualsofdana-T5p-L6ci-En-I-unsplash.jpg",
+      "description": "Spacious room with a view of the city skyline. Includes a king-sized bed and modern amenities.",
+      "price": 200
+    },
+    {
+      "name": "Suite with Ocean View",
+      "image": "https://i.ibb.co/MhptGsP/sasha-kaunas-67-s-Oi7m-VIk-unsplash.jpg",
+      "description": "Luxurious suite with a stunning ocean view. Features a private balcony and deluxe furnishings.",
+      "price": 350
+    },
+    {
+      "name": "Family Suite",
+      "image": "https://i.ibb.co/DtF65Lv/humphrey-muleba-dyj7-RTs85-Fs-unsplash.jpg",
+      "description": "Perfect for families, this suite offers multiple bedrooms and a spacious living area.",
+      "price": 300
+    },
+    {
+      "name": "Executive Suite",
+      "image": "https://i.ibb.co/6yy8Wfb/point3d-commercial-imaging-ltd-oxe-CZrodz78-unsplash.jpg",
+      "description": "Elegant suite designed for business travelers. Offers a dedicated workspace and premium services.",
+      "price": 280
+    },
+    {
+      "name": "Romantic Getaway",
+      "image": "https://i.ibb.co/mqnnj5s/vojtech-bruzek-Yrxr3bs-Pd-S0-unsplash.jpg",
+      "description": "Intimate room with a cozy atmosphere, perfect for couples seeking a romantic escape.",
+      "price": 180
+    },
+    {
+      "name": "Penthouse Suite",
+      "image": "https://i.ibb.co/LZNVL0F/steven-ungermann-a-RT5-UCf2-MYY-unsplash.jpg",
+      "description": "Luxury at its finest. Offers breathtaking views and top-tier amenities.",
+      "price": 500
+    },
+    {
+      "name": "Standard Room",
+      "image": "https://i.ibb.co/yqv35MN/olexandr-ignatov-w72a24br-INI-unsplash-1.jpg",
+      "description": "Comfortable room with essential amenities for a relaxing stay.",
+      "price": 150
+    },
+    {
+      "name": "Vintage Charm",
+      "image": "https://i.ibb.co/mNsvJKK/reisetopia-a-I6-Su7-Mu9-Ro-unsplash.jpg",
+      "description": "Classic room with a vintage touch, exuding old-world charm.",
+      "price": 170
+    }
+  ]

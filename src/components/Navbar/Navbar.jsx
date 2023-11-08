@@ -17,8 +17,8 @@ const Navbar = () => {
         {
             user ? <div className="flex gap-2">
                 {
-                    user.photoURL ? <div className="avatar">
-                        <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    user.photoURL ? <div className="mr-2 avatar hidden md:block">
+                        <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img src={user.photoURL}/>
                         </div>
                     </div>
