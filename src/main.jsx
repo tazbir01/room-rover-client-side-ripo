@@ -10,6 +10,7 @@ import Root from './components/Root/Root';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import AuthProvider from './components/Provider/AuthProvider';
+import Rooms from './components/Rooms/Rooms';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader:()=> fetch('http://localhost:5000/rooms')
+        loader: () => fetch('http://localhost:5000/rooms')
+      },
+      {
+        path: "/rooms",
+        element: <Rooms></Rooms>,
+        loader: () => fetch('http://localhost:5000/rooms')
       },
       {
         path: "/login",

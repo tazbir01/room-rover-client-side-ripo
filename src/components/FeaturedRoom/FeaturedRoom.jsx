@@ -8,6 +8,7 @@ const FeaturedRoom = ({ featuredRoom }) => {
                 <h2 className="card-title">{name}</h2>
                 <p>{description}</p>
                 <p className="text-lg">Price per night: ${price}</p>
+                <button className="btn btn-primary">Book Now</button>
             </div>
         </div>
     );
