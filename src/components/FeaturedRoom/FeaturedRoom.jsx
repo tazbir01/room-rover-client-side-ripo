@@ -2,7 +2,7 @@
 const FeaturedRoom = ({ featuredRoom }) => {
     const { name, image, description, price } = featuredRoom;
 
-    const discountPrice = price * 10/100
+    const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
 
     return (

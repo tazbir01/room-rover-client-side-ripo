@@ -13,11 +13,13 @@ import AuthProvider from './components/Provider/AuthProvider';
 import Rooms from './components/Rooms/Rooms';
 import RoomDetails from './components/RoomDetails/RoomDetails';
 import { HelmetProvider } from 'react-helmet-async';
+import ErrorPage from './components/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

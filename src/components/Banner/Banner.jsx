@@ -14,6 +14,9 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
+
+
+
             {/* <div className="carousel w-full h-[70vh]">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img src="https://i.ibb.co/MhptGsP/sasha-kaunas-67-s-Oi7m-VIk-unsplash.jpg" className="w-full" />
