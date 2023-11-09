@@ -11,6 +11,8 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import AuthProvider from './components/Provider/AuthProvider';
 import Rooms from './components/Rooms/Rooms';
+import RoomDetails from './components/RoomDetails/RoomDetails';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:5000/rooms')
       },
       {
+        path: "/roomdetails/:id",
+        element: <RoomDetails></RoomDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/rooms/${params.id}`)
+      },
+      {
         path: "/login",
         element: <Login></Login>
       },
@@ -42,7 +49,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </AuthProvider>
   </React.StrictMode>,
 )
