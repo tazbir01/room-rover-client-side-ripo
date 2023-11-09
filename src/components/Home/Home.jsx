@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import FeaturedRoom from "../FeaturedRoom/FeaturedRoom";
 import { Helmet } from "react-helmet-async";
+import Map from "../Map/Map";
 
 const Home = () => {
     const featuredRooms = useLoaderData()
@@ -12,6 +13,7 @@ const Home = () => {
                 <title>RoomRover | Home</title>
             </Helmet>
             <Banner></Banner>
+            <Map></Map>
             <div className="max-w-6xl mx-auto mt-16">
                 <h2 className="text-2xl font-bold mb-5">Our Featured Rooms</h2>
                 <div className="grid grid-cols-4 gap-5">
