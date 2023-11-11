@@ -14,6 +14,7 @@ import Rooms from './components/Rooms/Rooms';
 import RoomDetails from './components/RoomDetails/RoomDetails';
 import { HelmetProvider } from 'react-helmet-async';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import MyBookings from './components/MyBookings/MyBookings';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path: "/roomdetails/:id",
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) => fetch(`http://localhost:5000/rooms/${params.id}`)
+      },
+      {
+        path:"/mybookings",
+        element: <MyBookings></MyBookings>,
+        loader: ()=>fetch('http://localhost:5000/mybookings')
       },
       {
         path: "/login",

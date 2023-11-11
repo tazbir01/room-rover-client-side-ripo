@@ -1,11 +1,43 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 
 const RoomDetails = () => {
-    const {name, image, description, price } = useLoaderData()
+    const { name, image, description, price } = useLoaderData()
+    const [errorMessage, setErrorMessage] = useState('')
 
-    const discountPrice = price * 10/100
+    const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
+
+    const handleBookNow = e =>{
+        e.preventDefault()
+        const checkin = e.target.checkin.value
+        const checkout = e.target.checkout.value
+        console.log(checkin, checkout)
+        const addToMyRoom = {name, image, price, checkin, checkout}
+
+        setErrorMessage('')
+        
+        if(checkin < checkout){
+            return setErrorMessage('Invalide date')
+        }else if(!checkin || !checkout){
+            return setErrorMessage('Please choose your date')
+        }
+
+        const url = 'http://localhost:5000/mybookings'
+
+        fetch(url,{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addToMyRoom)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
 
     return (
         <div className="max-w-6xl mx-auto mt-14">
@@ -25,8 +57,24 @@ const RoomDetails = () => {
                     <p><span className="font-bold">Rating:</span> </p>
                     <p><span className="font-bold">Price per night:</span> <span className=" text-xl font-bold text-slate-600">${newPrice}</span> <del>${price}</del> <span className="bg-red-600 text-white rounded-lg p-1">10% Off</span></p>
                     <p><span className="font-bold">Description:</span> {description}</p>
-                    <input className="border p-1 block" type="date" name="" id="" />
-                    <button className="btn btn-primary">Book now</button>
+                    <form onSubmit={handleBookNow}>
+                        <div className="flex items-center">
+                            <label>
+                                <span>Check in: </span>
+                            </label>
+                            <input className="border p-1 block" type="date" name="checkin" id="" />
+                        </div>
+                        <div className="flex items-center">
+                            <label>
+                                <span>Check out: </span>
+                            </label>
+                            <input className="border p-1 block" type="date" name="checkout" id="" />
+                        </div>
+                            {
+                                errorMessage && <p className="text-red-600">*{errorMessage}</p>
+                            }
+                        <button className="btn btn-primary">Book now</button>
+                    </form>
                 </div>
             </div>
         </div>
