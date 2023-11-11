@@ -18,7 +18,7 @@ const RoomDetails = () => {
 
         setErrorMessage('')
         
-        if(checkin < checkout){
+        if(checkin > checkout){
             return setErrorMessage('Invalide date')
         }else if(!checkin || !checkout){
             return setErrorMessage('Please choose your date')
