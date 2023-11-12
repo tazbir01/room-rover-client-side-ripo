@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
+import { authContext } from "../Provider/AuthProvider";
 
 const RoomDetails = () => {
     const { name, image, description, price } = useLoaderData()
     const [errorMessage, setErrorMessage] = useState('')
+    const { user } = useContext(authContext)
 
     const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
@@ -27,52 +29,42 @@ const RoomDetails = () => {
 
         const url = 'http://localhost:5000/mybookings'
 
-        // fetch(url,{
-        //     method: 'POST',
-        //     headers:{
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(addToMyRoom)
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
-        //     if(data.insertedId){
-        //         swal("","Booking S")
-        //     }
-        // })
-
-
-        swal({
-            title: "Summery",
-            text: `Total Price: $${newPrice}
-
-                   Duration: ${checkin} to ${checkout}
-            `,
-            icon: "",
-            // buttons: true,
-            // dangerMode: true,
-        })
-            .then((willBooking) => {
-                if (willBooking) {
-                    fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(addToMyRoom)
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            if (data.insertedId) {
-                                swal("You have successfully booked", {
-                                    icon: "success",
-                                });
-                            }
+        if (user) {
+            swal({
+                title: "Summery",
+                text: `Total Price: $${newPrice}
+    
+                       Duration: ${checkin} to ${checkout}
+                `,
+                icon: "",
+            })
+                .then((willBooking) => {
+                    if (willBooking) {
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(addToMyRoom)
                         })
-                }
-            });
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data)
+                                if (data.insertedId) {
+                                    swal("You have successfully booked", {
+                                        icon: "success",
+                                    });
+                                }
+                            })
+                    }
+                });
+        } else {
+            // return <Navigate to="/login"></Navigate>
+            // history.push("/login")
+            window.location.href= '/login'
+        }
+
+
     }
 
     return (
