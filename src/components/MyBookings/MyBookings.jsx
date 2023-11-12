@@ -7,23 +7,14 @@ const MyBookings = () => {
     const myBookings = useLoaderData()
     const [bookings, setBookings] = useState(myBookings)
 
+    const handleUpdateButton = () =>{
+
+    }
+
     const handleCancelButton = id => {
-        // fetch(`http://localhost:5000/mybookings/${id}`,{
-        //     method:'DELETE'
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
-        //     if(data.deletedCount > 0){
-        //         const remaining = bookings.filter(booking => booking._id !== id)
-        //         setBookings(remaining)
-        //     }
-        // })
-
-
         swal({
             title: "Are you sure?",
-            text: "Are you sure to cancel your booking",
+            text: "Are you sure to cancel your booking?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -61,7 +52,7 @@ const MyBookings = () => {
                         <h4 className="text-xl font-bold">{book.name}</h4>
                         <p className="font-bold">Price: <span className="text-slate-500">${book.price}</span></p>
                         <p className="font-bold">Booking Duration: <span className="text-slate-500">{book.checkin}</span> to <span className="text-slate-500">{book.checkout}</span></p>
-                        <button className="btn btn-outline btn-info mr-4">Update</button>
+                        <button onClick={() => handleUpdateButton(book._id)} className="btn btn-outline btn-info mr-4">Update date</button>
                         <button onClick={() => handleCancelButton(book._id)} className="btn btn-primary">Cancel</button>
                     </div>
                 </div>)

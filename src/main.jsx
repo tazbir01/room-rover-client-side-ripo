@@ -15,6 +15,7 @@ import RoomDetails from './components/RoomDetails/RoomDetails';
 import { HelmetProvider } from 'react-helmet-async';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import MyBookings from './components/MyBookings/MyBookings';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/mybookings",
-        element: <MyBookings></MyBookings>,
+        element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>,
         loader: ()=>fetch('http://localhost:5000/mybookings')
       },
       {
