@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { authContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import swal from "sweetalert";
 
 const Login = () => {
     const {loginUser, loginWithGoogle} = useContext(authContext)
@@ -21,6 +22,7 @@ const Login = () => {
         .then(result =>{
             console.log(result.user)
             navigate(location?.state ? location.state : "/")
+            swal("","Login successfull","success")
         })
         .catch(error=>{
             console.log(error.message)

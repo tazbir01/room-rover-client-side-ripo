@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { authContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { Helmet } from "react-helmet-async";
+import swal from "sweetalert";
 
 const Register = () => {
     const {creatUser, loginWithGoogle} = useContext(authContext)
@@ -35,6 +36,7 @@ const Register = () => {
             updateProfile(result.user, {
                 displayName: name,
             })
+            swal('Register successfull',"Please login","success")
         })
         .catch(error => {
             console.log(error.message)
