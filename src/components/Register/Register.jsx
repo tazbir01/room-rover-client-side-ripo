@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { authContext } from "../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
@@ -8,6 +8,8 @@ import { Helmet } from "react-helmet-async";
 const Register = () => {
     const {creatUser, loginWithGoogle} = useContext(authContext)
     const [errorMessage, setErrorMessage] = useState('')
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const handleRegister = e =>{
         e.preventDefault()
@@ -44,6 +46,7 @@ const Register = () => {
         loginWithGoogle()
         .then(result => {
             console.log(result.user)
+            navigate(location?.state ? location.state : "/")
         })
         .catch(error =>{
             console.log(error.message)

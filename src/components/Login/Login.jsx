@@ -1,5 +1,5 @@
 import { useContext, useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { authContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
@@ -7,6 +7,9 @@ import { Helmet } from "react-helmet-async";
 const Login = () => {
     const {loginUser, loginWithGoogle} = useContext(authContext)
     const [errorMessage, setErrorMessage] = useState('')
+    const location = useLocation()
+    console.log(location)
+    const navigate = useNavigate()
 
     const handleLogin = e =>{
         e.preventDefault()
@@ -17,6 +20,7 @@ const Login = () => {
         loginUser(email, password)
         .then(result =>{
             console.log(result.user)
+            navigate(location?.state ? location.state : "/")
         })
         .catch(error=>{
             console.log(error.message)
@@ -28,6 +32,7 @@ const Login = () => {
         loginWithGoogle()
         .then(result =>{
             console.log(result.user)
+            navigate(location?.state ? location.state : "/")
         })
         .catch(error =>{
             console.log(error.message)
