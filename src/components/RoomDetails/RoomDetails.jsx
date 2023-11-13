@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 import { authContext } from "../Provider/AuthProvider";
+import Review from "../Review/Review";
 
 const RoomDetails = () => {
     const { name, image, description, price } = useLoaderData()
     const [errorMessage, setErrorMessage] = useState('')
     const { user } = useContext(authContext)
     const [rating, setRating] = useState(0)
+    const [reviews, setReviews] = useState([])
 
     const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
@@ -91,6 +93,12 @@ const RoomDetails = () => {
         }
     }
 
+    useEffect(()=>{
+        fetch("http://localhost:5000/reviews")
+        .then(res => res.json())
+        .then(data=>setReviews(data))
+    },[])
+
 
     return (
         <div className="max-w-6xl mx-auto my-14">
@@ -102,16 +110,8 @@ const RoomDetails = () => {
                     <img className="rounded-xl" src={image} alt="" />
                     {/* review section */}
                     <div className="space-y-3">
-                        <h4 className="text-xl font-bold">Customars review: </h4>
+                        <h4 className="text-xl font-bold">Customars review: {reviews.length}</h4>
                         <form onSubmit={handleReviewFrom}>
-                            {/* <div className="rating my-3">
-                                <p>Rating: </p>
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                            </div> */}
 
                             <div className="my-3 rating">
                                 <label className="block text-sm font-medium text-gray-700">Rating:</label>
@@ -135,6 +135,11 @@ const RoomDetails = () => {
                                 <button className="btn btn-primary">Comment</button>
                             </div>
                         </form>
+                        <div>
+                            {
+                                reviews.map(review => <Review key={review._id} review={review}></Review>)
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className=" col-span-2 p-5 ml-3 space-y-3 shadow-lg bg-base-300 rounded-xl">
