@@ -21,7 +21,7 @@ const RoomDetails = () => {
 
         setErrorMessage('')
 
-        if (checkin > checkout) {
+        if (checkin >= checkout) {
             return setErrorMessage('Invalide date')
         } else if (!checkin || !checkout) {
             return setErrorMessage('Please choose your date')
@@ -61,10 +61,15 @@ const RoomDetails = () => {
         } else {
             // return <Navigate to="/login"></Navigate>
             // history.push("/login")
-            window.location.href= '/login'
+            window.location.href = '/login'
         }
+    }
 
-
+    const handleReviewFrom = e =>{
+        e.preventDefault()
+        const rating = e.target.rating.value
+        const comment = e.target.comment.value
+        console.log(rating,comment)
     }
 
     return (
@@ -76,8 +81,24 @@ const RoomDetails = () => {
                 <div className=" col-span-3 space-y-3 ">
                     <img className="rounded-xl" src={image} alt="" />
                     {/* review section */}
-                    <div>
+                    <div className="space-y-3">
                         <h4 className="text-xl font-bold">Customars review: </h4>
+                        <form onSubmit={handleReviewFrom}>
+                            <div className="rating my-3">
+                                <p>Rating: </p>
+                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            </div>
+                            <div>
+                                <textarea className="textarea textarea-bordered" name="comment" id="" cols="60" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <button className="btn btn-primary">Comment</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div className=" col-span-2 p-5 ml-3 space-y-3 shadow-lg bg-base-300 rounded-xl">
@@ -86,7 +107,7 @@ const RoomDetails = () => {
                     <p><span className="font-bold">Price per night:</span> <span className=" text-xl font-bold text-slate-600">${newPrice}</span> <del>${price}</del> <span className="bg-red-600 text-white rounded-lg p-1">10% Off</span></p>
                     <p><span className="font-bold">Description:</span> {description}</p>
                     <form onSubmit={handleBookNow}>
-                        <div className="flex items-center">
+                        <div className="flex items-center mb-2">
                             <label>
                                 <span>Check in: </span>
                             </label>
