@@ -14,7 +14,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <div className="bg-red-600 flex justify-around items-center  text-white text-center max-w-6xl mx-auto rounded-2xl my-6">
-            <div>
+                <div>
                     <p className="text-4xl font-bold">10% Off</p>
                     <p>for every room</p>
                 </div>
