@@ -16,6 +16,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import MyBookings from './components/MyBookings/MyBookings';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import GridImageSection from './components/GridImageSection/GridImageSection';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/rooms')
+        loader: () => fetch('http://localhost:5000/rooms'),
+        children:[
+          {
+            path:"/",
+            element:<GridImageSection></GridImageSection>,
+            loader: () => fetch('http://localhost:5000/rooms')
+          }
+        ]
       },
       {
         path: "/rooms",
@@ -50,7 +58,8 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
-      }
+      },
+      
     ]
   },
 ]);

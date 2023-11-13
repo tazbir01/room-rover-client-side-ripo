@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import FeaturedRoom from "../FeaturedRoom/FeaturedRoom";
 import { Helmet } from "react-helmet-async";
@@ -25,6 +25,7 @@ const Home = () => {
                     <p>Book now and save 10%</p>
                 </div>
             </div>
+            <Outlet></Outlet>
             <div>
                 <Map></Map>
             </div>

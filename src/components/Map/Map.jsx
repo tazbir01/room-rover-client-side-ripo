@@ -11,7 +11,7 @@ const Map = () => {
         zoom: 11
     };
     return (
-        <div>
+        <div className='max-w-6xl mx-auto'>
             <div style={{ height: '300px', width: '500px' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "" }}
