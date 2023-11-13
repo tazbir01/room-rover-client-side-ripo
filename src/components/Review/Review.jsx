@@ -1,10 +1,14 @@
 import moment from "moment";
 
-const Review = ({ review }) => {
-    const { rating, comment, userName, timestamp } = review;
+const Review = ({ review, id }) => {
+    const { rating, comment, userName, timestamp, roomId } = review;
 
     const momentDate = moment(timestamp)
     const formatedDate = momentDate.format('d/m/yyy h:mm:ss a')
+
+    if(id !== roomId){
+        return null;
+    }
 
     return (
         <div className="border-t-2 mb-5">

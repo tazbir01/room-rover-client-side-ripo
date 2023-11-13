@@ -6,11 +6,12 @@ import { authContext } from "../Provider/AuthProvider";
 import Review from "../Review/Review";
 
 const RoomDetails = () => {
-    const { name, image, description, price } = useLoaderData()
+    const { name, image, description, price, _id } = useLoaderData()
     const [errorMessage, setErrorMessage] = useState('')
     const { user } = useContext(authContext)
     const [rating, setRating] = useState(0)
     const [reviews, setReviews] = useState([])
+    const [message, setMessage] = useState('')
 
     const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
@@ -77,7 +78,7 @@ const RoomDetails = () => {
 
         const comment = e.target.comment.value;
         const timestamp = new Date().toISOString();
-        const review = { rating, comment, userName: user.displayName, timestamp }
+        const review = { rating, comment, userName: user.displayName, timestamp, roomId: _id }
         console.log(review)
 
         if (user) {
@@ -90,14 +91,16 @@ const RoomDetails = () => {
             })
                 .then(res => res.json())
                 .then(data => console.log(data))
+        } else {
+            return setMessage('Please log in')
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch("http://localhost:5000/reviews")
-        .then(res => res.json())
-        .then(data=>setReviews(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setReviews(data))
+    }, [])
 
 
     return (
@@ -137,7 +140,10 @@ const RoomDetails = () => {
                         </form>
                         <div>
                             {
-                                reviews.map(review => <Review key={review._id} review={review}></Review>)
+                                reviews.map(review => <Review
+                                    key={review._id}
+                                    review={review}
+                                    id={_id}></Review>)
                             }
                         </div>
                     </div>
@@ -164,6 +170,9 @@ const RoomDetails = () => {
                             errorMessage && <p className="text-red-600">*{errorMessage}</p>
                         }
                         <button className="btn btn-primary">Book now</button>
+                        {
+                            message && <p>{message}</p>
+                        }
                     </form>
                 </div>
             </div>
