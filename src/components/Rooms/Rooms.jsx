@@ -9,8 +9,7 @@ const Rooms = () => {
             <Helmet>
                 <title>RoomRover | Rooms</title>
             </Helmet>
-            <h2>this is rooms page</h2>
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-4 gap-5 my-8">
                 {
                     rooms.map(room => <div key={room._id}>
                         <Link to={`/roomdetails/${room._id}`}>

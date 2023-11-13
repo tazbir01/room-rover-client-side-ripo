@@ -8,6 +8,7 @@ const RoomDetails = () => {
     const { name, image, description, price } = useLoaderData()
     const [errorMessage, setErrorMessage] = useState('')
     const { user } = useContext(authContext)
+    const [rating, setRating] = useState(0)
 
     const discountPrice = price * 10 / 100
     const newPrice = price - discountPrice
@@ -65,15 +66,34 @@ const RoomDetails = () => {
         }
     }
 
-    const handleReviewFrom = e =>{
-        e.preventDefault()
-        const rating = e.target.rating.value
-        const comment = e.target.comment.value
-        console.log(rating,comment)
+    const handleRatingChange = (e) => {
+        setRating(parseInt(e.target.value, 10))
     }
 
+    const handleReviewFrom = (e) => {
+        e.preventDefault()
+
+        const comment = e.target.comment.value;
+        const timestamp = new Date().toISOString();
+        const review = { rating, comment, userName: user.displayName, timestamp }
+        console.log(review)
+
+        if (user) {
+            fetch("http://localhost:5000/reviews", {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(review)
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }
+    }
+
+
     return (
-        <div className="max-w-6xl mx-auto mt-14">
+        <div className="max-w-6xl mx-auto my-14">
             <Helmet>
                 <title>Room details</title>
             </Helmet>
@@ -84,14 +104,30 @@ const RoomDetails = () => {
                     <div className="space-y-3">
                         <h4 className="text-xl font-bold">Customars review: </h4>
                         <form onSubmit={handleReviewFrom}>
-                            <div className="rating my-3">
+                            {/* <div className="rating my-3">
                                 <p>Rating: </p>
                                 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                            </div> */}
+
+                            <div className="my-3 rating">
+                                <label className="block text-sm font-medium text-gray-700">Rating:</label>
+                                {[1, 2, 3, 4, 5].map((value) => (
+                                    <input
+                                        key={value}
+                                        type="radio"
+                                        name="rating"
+                                        value={value}
+                                        onChange={handleRatingChange}
+                                        checked={rating === value}
+                                        className="mask mask-star-2 bg-orange-400"
+                                    />
+                                ))}
                             </div>
+
                             <div>
                                 <textarea className="textarea textarea-bordered" name="comment" id="" cols="60" rows="3"></textarea>
                             </div>
