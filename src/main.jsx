@@ -27,29 +27,29 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/rooms'),
+        loader: () => fetch('https://room-rover-server.vercel.app/rooms'),
         children:[
           {
             path:"/",
             element:<GridImageSection></GridImageSection>,
-            loader: () => fetch('http://localhost:5000/rooms')
+            loader: () => fetch('https://room-rover-server.vercel.app/rooms')
           }
         ]
       },
       {
         path: "/rooms",
         element: <Rooms></Rooms>,
-        loader: () => fetch('http://localhost:5000/rooms')
+        loader: () => fetch('https://room-rover-server.vercel.app/rooms')
       },
       {
         path: "/roomdetails/:id",
         element: <RoomDetails></RoomDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/rooms/${params.id}`)
+        loader: ({ params }) => fetch(`https://room-rover-server.vercel.app/rooms/${params.id}`)
       },
       {
         path:"/mybookings",
         element: <PrivateRoute><MyBookings></MyBookings></PrivateRoute>,
-        loader: ()=>fetch('http://localhost:5000/mybookings')
+        loader: ()=>fetch('https://room-rover-server.vercel.app/mybookings')
       },
       {
         path: "/login",

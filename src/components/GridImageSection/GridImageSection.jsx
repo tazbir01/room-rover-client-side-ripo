@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 const GridImageSection = () => {
     const rooms = useLoaderData()
     return (
-        <div className="max-w-6xl mx-auto grid grid-cols-4 my-5">
+        <div className="max-w-6xl mx-auto hidden md:grid grid-cols-4 my-5">
             {
                 rooms.map(room => <div className="" key={room._id}>
                     <div>

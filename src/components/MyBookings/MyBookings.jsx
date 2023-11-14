@@ -25,7 +25,7 @@ const MyBookings = () => {
             return setErrorMessage('Please choose your date')
         }
 
-        fetch(`http://localhost:5000/mybookings/${id}`, {
+        fetch(`https://room-rover-server.vercel.app/mybookings/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +53,7 @@ const MyBookings = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/mybookings/${id}`, {
+                    fetch(`https://room-rover-server.vercel.app/mybookings/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -78,8 +78,8 @@ const MyBookings = () => {
             </Helmet>
             <h2 className="text-2xl font-semibold">My bookings: {bookings.length}</h2>
             {
-                bookings.map(book => <div key={book._id} className="flex gap-5 border rounded-lg space-y-5">
-                    <img className="w-60 rounded-lg" src={book.image} alt="" />
+                bookings.map(book => <div key={book._id} className="md:flex gap-5 border rounded-lg space-y-5">
+                    <img className="md:w-60 rounded-lg" src={book.image} alt="" />
                     <div className="space-y-1 p-2">
                         <h4 className="text-xl font-bold">{book.name}</h4>
                         <p className="font-bold">Price: <span className="text-slate-500">${book.price}</span></p>

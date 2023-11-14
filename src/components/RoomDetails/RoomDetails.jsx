@@ -31,7 +31,7 @@ const RoomDetails = () => {
             return setErrorMessage('Please choose your date')
         }
 
-        const url = 'http://localhost:5000/mybookings'
+        const url = 'https://room-rover-server.vercel.app/mybookings'
 
         if (user) {
             swal({
@@ -82,7 +82,7 @@ const RoomDetails = () => {
         console.log(review)
 
         if (user) {
-            fetch("http://localhost:5000/reviews", {
+            fetch("https://room-rover-server.vercel.app/reviews", {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -97,7 +97,7 @@ const RoomDetails = () => {
     }
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://room-rover-server.vercel.app/reviews")
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -110,10 +110,10 @@ const RoomDetails = () => {
             </Helmet>
             <div className="grid grid-cols-5">
                 <div className=" col-span-3 space-y-3 ">
-                    <img className="rounded-xl" src={image} alt="" />
+                    <img className="rounded-xl mb-10" src={image} alt="" />
                     {/* review section */}
                     <div className="space-y-3">
-                        <h4 className="text-xl font-bold">Customars review: {reviews.length}</h4>
+                        <h4 className="text-xl font-bold">Customars review</h4>
                         <form onSubmit={handleReviewFrom}>
 
                             <div className="my-3 rating">
@@ -135,7 +135,7 @@ const RoomDetails = () => {
                                 <textarea className="textarea textarea-bordered" name="comment" id="" cols="60" rows="3"></textarea>
                             </div>
                             <div>
-                                <button className="btn btn-primary">Comment</button>
+                                <button className="btn btn-primary">Post</button>
                             </div>
                         </form>
                         <div>

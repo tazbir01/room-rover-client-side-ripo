@@ -12,7 +12,7 @@ const Map = () => {
     };
     return (
         <div className='max-w-6xl mx-auto'>
-            <div style={{ height: '300px', width: '500px' }}>
+            <div className=' ' style={{ height: '300px', maxWidth: '600px' }}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "" }}
                     defaultCenter={defaultProps.center}

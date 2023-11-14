@@ -1,8 +1,13 @@
-# React + Vite
+# RoomRover
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project live link: [https://room-rover-39c10.web.app/](https://room-rover-39c10.web.app/)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Speacial Features and Functionalities have in this Projects
+
+* This project is about Hotel room booking service.
+* User can not book a room without login or register.
+* This project have firebase authentication.
+* User can review each room.
+* It is single page application.
+* User can update booking date after book.

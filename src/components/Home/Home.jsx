@@ -15,10 +15,10 @@ const Home = () => {
             <Banner></Banner>
             <div className="bg-red-600 flex justify-around items-center  text-white text-center max-w-6xl mx-auto rounded-2xl my-6">
                 <div>
-                    <p className="text-4xl font-bold">10% Off</p>
+                    <p className="text-xl md:text-4xl font-bold">10% Off</p>
                     <p>for every room</p>
                 </div>
-                <div className="bg-white text-red-600 text-lg font-bold rounded-xl my-2 p-2">
+                <div className="bg-white text-red-600 text-lg font-bold rounded-xl my-2 p-2 hidden lg:flex">
                     <p>Find and book your perfect stay</p>
                 </div>
                 <div className="bg-white text-red-600 text-lg font-bold rounded-xl my-2 p-2">
@@ -31,7 +31,7 @@ const Home = () => {
             </div>
             <div className="max-w-6xl mx-auto mt-16">
                 <h2 className="text-2xl font-bold mb-5">Our Featured Rooms</h2>
-                <div className="grid grid-cols-4 gap-5">
+                <div className="grid md:grid-cols-4 md:p-3 gap-5">
                     {
                         featuredRooms.map(featuredRoom => <FeaturedRoom key={featuredRoom._id} featuredRoom={featuredRoom}></FeaturedRoom>)
                     }
